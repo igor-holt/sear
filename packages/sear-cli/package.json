@@ -1,0 +1,22 @@
+{
+  "name": "sear-cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "sear": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "install-global": "npm link"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

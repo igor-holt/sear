@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-04-19T16:04:28.115Z",
+  "scenario": "local-preview",
+  "results": [
+    {
+      "label": "Home page",
+      "path": "/",
+      "latencyTailMs": 6,
+      "requestsPerSec": 2881,
+      "throughputKbPerSec": 58019.2,
+      "transferredBytes": 20181
+    },
+    {
+      "label": "Benchmarks API",
+      "path": "/api/benchmark",
+      "latencyTailMs": 8,
+      "requestsPerSec": 3000.6,
+      "throughputKbPerSec": 1166.2,
+      "transferredBytes": 137
+    },
+    {
+      "label": "Overview API",
+      "path": "/api/overview",
+      "latencyTailMs": 5,
+      "requestsPerSec": 3891.2,
+      "throughputKbPerSec": 6459.6,
+      "transferredBytes": 1438
+    }
+  ],
+  "artifacts": {
+    "robots": true,
+    "sitemapTxt": true,
+    "llmsTxt": true
+  }
+}
