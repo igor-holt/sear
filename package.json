@@ -1,0 +1,13 @@
+{
+  "name": "sear",
+  "private": true,
+  "packageManager": "pnpm@10.27.0",
+  "scripts": {
+    "build": "pnpm --dir apps/web build && pnpm --dir packages/sear-cli build",
+    "dev": "pnpm --dir apps/web dev",
+    "lint": "pnpm --dir apps/web lint && pnpm --dir packages/sear-cli lint",
+    "test": "pnpm --dir apps/web test && pnpm --dir packages/sear-cli test",
+    "bench": "pnpm --dir apps/web bench",
+    "install:cli": "pnpm --dir packages/sear-cli install-global"
+  }
+}
