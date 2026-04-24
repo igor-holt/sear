@@ -1,7 +1,8 @@
 const VERSION = "0.1.0";
+const DEFAULT_BASE_URL = "https://sear.genesisconductor.io";
 
 export function resolveBaseUrl(baseUrl?: string) {
-  return (baseUrl || process.env.SEAR_BASE_URL || "http://localhost:3000").replace(
+  return (baseUrl || process.env.SEAR_BASE_URL || DEFAULT_BASE_URL).replace(
     /\/$/,
     "",
   );
