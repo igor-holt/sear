@@ -1,0 +1,17 @@
+.DS_Store
+.conductor/logs/
+node_modules/
+.pnpm-store/
+coverage/
+dist/
+.next/
+apps/web/.next/
+apps/web/node_modules/
+packages/*/node_modules/
+packages/*/bin/
+.vercel/
+.env*
+*.pem
+*.tsbuildinfo
+build/
+out/
