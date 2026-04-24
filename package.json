@@ -5,6 +5,8 @@
   "scripts": {
     "build": "pnpm --dir apps/web build && pnpm --dir packages/sear-cli build",
     "dev": "pnpm --dir apps/web dev",
+    "preview:cloudflare": "pnpm --dir apps/web run preview",
+    "deploy:cloudflare": "pnpm --dir apps/web run deploy",
     "lint": "pnpm --dir apps/web lint && pnpm --dir packages/sear-cli lint",
     "test": "pnpm --dir apps/web test && pnpm --dir packages/sear-cli test",
     "bench": "pnpm --dir apps/web bench",

@@ -1,5 +1,7 @@
 import benchmarkSnapshot from "@/data/benchmarks.json";
 
+export const productionSiteUrl = "https://sear.genesisconductor.io";
+
 export type BenchmarkResult = {
   label: string;
   path: string;
@@ -98,7 +100,7 @@ export function getSiteUrl(hostOverride?: string) {
     return `https://${process.env.VERCEL_URL}`;
   }
 
-  return "http://localhost:3000";
+  return productionSiteUrl;
 }
 
 export function withSiteUrl(path: string, hostOverride?: string) {

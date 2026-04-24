@@ -18,6 +18,17 @@ pnpm bench
 pnpm install:cli
 ```
 
+## Cloudflare deploy
+
+SEAR is configured to run on Cloudflare Workers at `https://sear.genesisconductor.io`.
+
+```bash
+pnpm preview:cloudflare
+pnpm deploy:cloudflare
+```
+
+The app deploys from `apps/web` via the OpenNext adapter and Wrangler, with the custom domain attached in `apps/web/wrangler.jsonc`.
+
 ## ChatGPT app
 
 The remote MCP endpoint is exposed at `/api/mcp`. Connect it from ChatGPT developer mode over HTTPS after deployment.
