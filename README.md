@@ -16,6 +16,14 @@ pnpm build
 pnpm test
 pnpm bench
 pnpm install:cli
+sear --json doctor
+```
+
+`sear doctor` defaults to the live deployment at `https://sear.genesisconductor.io`. For a local dev server, pass an explicit base URL:
+
+```bash
+pnpm dev
+sear --base-url http://localhost:3000 --json doctor
 ```
 
 ## Cloudflare deploy

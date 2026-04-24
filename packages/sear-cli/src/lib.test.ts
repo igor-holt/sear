@@ -2,6 +2,10 @@ import { describe, expect, it, vi } from "vitest";
 import { doctor, resolveBaseUrl } from "./lib.js";
 
 describe("resolveBaseUrl", () => {
+  it("defaults to the live SEAR deployment", () => {
+    expect(resolveBaseUrl()).toBe("https://sear.genesisconductor.io");
+  });
+
   it("trims trailing slash", () => {
     expect(resolveBaseUrl("https://sear.example/")).toBe("https://sear.example");
   });
