@@ -36,3 +36,58 @@ do
 done
 
 grep -qxF '.conductor/logs/' .gitignore
+
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+mkdir -p "$tmpdir/bin" "$tmpdir/home"
+
+cat > "$tmpdir/bin/node" <<'EOF'
+#!/usr/bin/env bash
+printf 'v22.14.0\n'
+EOF
+
+cat > "$tmpdir/bin/corepack" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "${1:-}" = "enable" ]; then
+  exit 0
+fi
+
+if [ "${1:-}" = "pnpm" ]; then
+  shift
+  exec pnpm "$@"
+fi
+
+echo "unexpected corepack args: $*" >&2
+exit 1
+EOF
+
+cat > "$tmpdir/bin/pnpm" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+printf '%s\n' "$*" >> "$TEST_PNPM_LOG"
+EOF
+
+cat > "$tmpdir/bin/curl" <<'EOF'
+#!/usr/bin/env bash
+echo "curl should not run without Conductor auth context" >&2
+exit 99
+EOF
+
+cat > "$tmpdir/bin/conductor" <<'EOF'
+#!/usr/bin/env bash
+echo "conductor should not run without CONDUCTOR_WORKSPACE" >&2
+exit 98
+EOF
+
+chmod +x "$tmpdir/bin/node" \
+  "$tmpdir/bin/corepack" \
+  "$tmpdir/bin/pnpm" \
+  "$tmpdir/bin/curl" \
+  "$tmpdir/bin/conductor"
+
+TEST_PNPM_LOG="$tmpdir/pnpm.log" PATH="$tmpdir/bin:$PATH" HOME="$tmpdir/home" \
+  env -u CONDUCTOR_API_KEY -u CONDUCTOR_WORKSPACE bash .conductor/setup.sh
+
+grep -qxF 'install --frozen-lockfile' "$tmpdir/pnpm.log"

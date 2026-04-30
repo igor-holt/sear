@@ -1,6 +1,14 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { benchmarks, doctor, overview, rawGet, sitemap, toHuman } from "./lib.js";
+import {
+  benchmarks,
+  doctor,
+  overview,
+  rawGet,
+  sitemap,
+  toHuman,
+  workers,
+} from "./lib.js";
 
 function emit(json: boolean, label: string, value: unknown) {
   if (json) {
@@ -70,6 +78,14 @@ program
       Boolean(options.json),
       "benchmarks",
     );
+  });
+
+program
+  .command("workers")
+  .description("Fetch the enabled Notion worker roster and ambient MCP sync metadata")
+  .action(async () => {
+    const options = program.opts<{ json?: boolean; baseUrl?: string }>();
+    await run(() => workers(options.baseUrl), Boolean(options.json), "workers");
   });
 
 program

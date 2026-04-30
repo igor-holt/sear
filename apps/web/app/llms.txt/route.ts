@@ -16,6 +16,7 @@ export async function GET(request: Request) {
     "## Machine-readable endpoints",
     withSiteUrl("/api/overview", host),
     withSiteUrl("/api/benchmark", host),
+    withSiteUrl("/api/workers", host),
     withSiteUrl("/api/mcp", host),
   ].join("\n");
 

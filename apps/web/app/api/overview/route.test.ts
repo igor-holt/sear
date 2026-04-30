@@ -8,5 +8,7 @@ describe("GET /api/overview", () => {
 
     expect(payload.productName).toBe("SEAR");
     expect(Array.isArray(payload.features)).toBe(true);
+    expect(payload.notionWorkerCount).toBe(15);
+    expect(payload.ambientIntegration.endpoint).toContain("ambient-mcp-server");
   });
 });

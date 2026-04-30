@@ -9,6 +9,16 @@ export type BenchmarkResult = {
   transferredBytes: number;
 };
 
+export type NotionWorker = {
+  id: string;
+  name: string;
+  status: "Enabled";
+  owner: string;
+  enabledAt: string;
+  updatedAt: string;
+  domain: string;
+};
+
 type BenchmarkSnapshot = {
   generatedAt: string | null;
   scenario: string;
@@ -54,6 +64,169 @@ export const featureCards = [
   },
 ];
 
+export const ambientIntegration = {
+  endpoint: "https://ambient-mcp-server.iholt.workers.dev/mcp",
+  healthEndpoint: "https://ambient-mcp-server.iholt.workers.dev/health",
+  transport: "cloudflare-worker",
+  notionRecord:
+    "https://app.notion.com/p/7acabd84e8ad4e2b9979a4c1ef41cb47",
+  architectureRecord:
+    "https://app.notion.com/p/30b41dbeb0c7474b993546dd436496db",
+  w13Record: "https://app.notion.com/p/8d198becb97e4f85a0c385c1aaa57d88",
+  syncMode: "read-only registry mirror",
+} as const;
+
+export const notionWorkers: NotionWorker[] = [
+  {
+    id: "W-BOOT",
+    name: "genesis-hello-worker",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Notion worker smoke test",
+  },
+  {
+    id: "W-02",
+    name: "gc-billing-sync",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Billing pipeline",
+  },
+  {
+    id: "W-00",
+    name: "gc-conductor",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Master orchestration",
+  },
+  {
+    id: "W-11",
+    name: "gc-deploy-tracker",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "CI/CD and deployment history",
+  },
+  {
+    id: "W-06",
+    name: "gc-etherscan-oracle",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Base L2 on-chain monitoring",
+  },
+  {
+    id: "W-12",
+    name: "gc-experiment-tracker",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Research and experiment runs",
+  },
+  {
+    id: "W-04",
+    name: "gc-health-sentinel",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Infrastructure health",
+  },
+  {
+    id: "W-09",
+    name: "gc-ip-registry",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "IP portfolio",
+  },
+  {
+    id: "W-07",
+    name: "gc-pareto-growth",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Growth analytics",
+  },
+  {
+    id: "W-03",
+    name: "gc-revenue-dash",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Revenue aggregation",
+  },
+  {
+    id: "W-10",
+    name: "gc-secret-rotation",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Credential lifecycle",
+  },
+  {
+    id: "W-08",
+    name: "gc-stripe-analytics",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Subscription analytics",
+  },
+  {
+    id: "W-05",
+    name: "gc-temporal-monitor",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "Temporal workflow monitoring",
+  },
+  {
+    id: "W-01",
+    name: "gc-wrap-monitor",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-01",
+    updatedAt: "2026-04-01",
+    domain: "wQFLOP wrap execution",
+  },
+  {
+    id: "W-15",
+    name: "gc-autofunnel-monitor",
+    status: "Enabled",
+    owner: "Igor Holt",
+    enabledAt: "2026-04-20",
+    updatedAt: "2026-04-20",
+    domain: "Autofunnel monitoring",
+  },
+];
+
+export const workerSyncSummary = {
+  source: "Notion workers dashboard",
+  syncedAt: "2026-04-30",
+  total: notionWorkers.length,
+  enabled: notionWorkers.filter((worker) => worker.status === "Enabled").length,
+  ambientEndpoint: ambientIntegration.endpoint,
+  integrationNotes: [
+    "W-13 gc-ambient-gateway monitors ambient access and feeds W-00, W-04, W-10, and W-11.",
+    "SEAR mirrors the Notion worker roster through read-only site, MCP, and CLI surfaces.",
+    "The legacy ambient-mcp-server dist path is not required at runtime; SEAR tracks the deployed MCP endpoint.",
+  ],
+};
+
 export const launchChecklist = [
   "Build the Next.js app and the installable CLI from one workspace.",
   "Verify local functionality with tests and a benchmark harness.",
@@ -75,6 +248,11 @@ export const docsSections = [
     heading: "CLI",
     body:
       "Install `sear` globally with `pnpm install:cli`, then use `sear --json doctor` from any working directory.",
+  },
+  {
+    heading: "Notion workers",
+    body:
+      "Use `sear --json workers` or `/api/workers` to inspect the enabled Notion worker roster and the ambient MCP sync endpoint.",
   },
 ];
 

@@ -70,6 +70,10 @@ export async function benchmarks(baseUrl?: string) {
   return fetchPath("/api/benchmark", baseUrl);
 }
 
+export async function workers(baseUrl?: string) {
+  return fetchPath("/api/workers", baseUrl);
+}
+
 export async function sitemap(baseUrl?: string) {
   return fetchPath("/sitemap.txt", baseUrl);
 }

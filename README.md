@@ -5,7 +5,7 @@ SEAR is the Self Evolving Agent Retrainer: a public launch surface, a read-only 
 ## What ships
 
 - `apps/web`: Next.js 16 site with SEO metadata, `robots.txt`, `sitemap.xml`, `sitemap.txt`, `llms.txt`, benchmark pages, and a remote MCP endpoint at `/api/mcp`
-- `packages/sear-cli`: installable `sear` CLI with `doctor`, `overview`, `benchmarks`, `sitemap`, and raw `request get`
+- `packages/sear-cli`: installable `sear` CLI with `doctor`, `overview`, `benchmarks`, `workers`, `sitemap`, and raw `request get`
 - `.codex/skills/sear`: companion skill for future Codex threads
 
 ## Local workflow
@@ -17,6 +17,7 @@ pnpm test
 pnpm bench
 pnpm install:cli
 sear --json doctor
+sear --json workers
 ```
 
 `sear doctor` defaults to the live deployment at `https://sear.genesisconductor.io`. For a local dev server, pass an explicit base URL:

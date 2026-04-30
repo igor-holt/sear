@@ -2,13 +2,16 @@ import { registerAppResource, registerAppTool } from "@modelcontextprotocol/ext-
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import {
+  ambientIntegration,
   benchmarkSummary,
   featureCards,
   launchChecklist,
+  notionWorkers,
   productName,
   productTagline,
   productStats,
   siteDescription,
+  workerSyncSummary,
 } from "@/lib/site";
 
 const widgetUri = "ui://widget/sear-release-v1.html";
@@ -63,13 +66,17 @@ function renderWidget(origin: string) {
         const checklist = Array.isArray(data.checklist)
           ? '<ul>' + data.checklist.map((item) => '<li>' + item + '</li>').join('') + '</ul>'
           : "";
+        const workers = Array.isArray(data.workers)
+          ? '<ul>' + data.workers.map((item) => '<li><code>' + item.id + '</code> ' + item.name + ' · ' + item.status + '</li>').join('') + '</ul>'
+          : "";
         contentNode.innerHTML = [
           data.title ? '<p class="eyebrow">' + data.title + '</p>' : '',
           data.summary ? '<h2>' + data.summary + '</h2>' : '',
           data.description ? '<p>' + data.description + '</p>' : '',
           stats,
           benchmarks,
-          checklist
+          checklist,
+          workers
         ].join('');
       };
 
@@ -244,6 +251,52 @@ export function createSearMcpServer(origin: string) {
           text: "Start with `sear --json doctor`, then use the read-only commands to inspect overview and benchmark data.",
         },
       ],
+    }),
+  );
+
+  registerAppTool(
+    server,
+    "sear_notion_workers",
+    {
+      title: "Show Notion worker sync",
+      description:
+        "Use this when you need the enabled Genesis Conductor Notion worker roster and ambient MCP integration status.",
+      inputSchema: {
+        includeAmbient: z.boolean().default(true),
+      },
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
+      _meta: {
+        ui: { resourceUri: widgetUri },
+        "openai/toolInvocation/invoking": "Loading Notion worker roster…",
+        "openai/toolInvocation/invoked": "Notion worker roster ready.",
+      },
+    },
+    async ({ includeAmbient }) => ({
+      structuredContent: {
+        title: "notion worker sync",
+        summary: `${workerSyncSummary.enabled}/${workerSyncSummary.total} Notion workers enabled.`,
+        description:
+          "SEAR mirrors the Genesis Conductor Notion worker roster for read-only release inspection.",
+        stats: [
+          { label: "enabled workers", value: String(workerSyncSummary.enabled) },
+          { label: "ambient mcp", value: includeAmbient ? "linked" : "hidden" },
+        ],
+        workers: notionWorkers,
+      },
+      content: [
+        {
+          type: "text",
+          text: `SEAR tracks ${workerSyncSummary.total} enabled Notion workers and links ambient MCP at ${ambientIntegration.endpoint}.`,
+        },
+      ],
+      _meta: {
+        ambientIntegration: includeAmbient ? ambientIntegration : undefined,
+        sync: workerSyncSummary,
+      },
     }),
   );
 

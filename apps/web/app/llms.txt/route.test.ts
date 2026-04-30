@@ -7,6 +7,7 @@ describe("GET /llms.txt", () => {
     const body = await response.text();
 
     expect(body).toContain("/api/mcp");
+    expect(body).toContain("/api/workers");
     expect(body).toContain("SEAR");
   });
 });

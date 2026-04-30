@@ -1,11 +1,14 @@
 import {
+  ambientIntegration,
   benchmarkSummary,
   featureCards,
   launchChecklist,
+  notionWorkers,
   productName,
   productTagline,
   productStats,
   siteDescription,
+  workerSyncSummary,
 } from "@/lib/site";
 
 export async function GET() {
@@ -17,5 +20,8 @@ export async function GET() {
     features: featureCards,
     launchChecklist,
     benchmarkScenario: benchmarkSummary.scenario,
+    workerSync: workerSyncSummary,
+    ambientIntegration,
+    notionWorkerCount: notionWorkers.length,
   });
 }
