@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEAR"
+  short_description: "Operate SEAR through its installed CLI"
+  default_prompt: "Use $sear to verify the deployment, inspect benchmarks, and fetch the read-only SEAR surfaces."

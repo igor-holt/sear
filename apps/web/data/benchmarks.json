@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-04-20T02:11:00.497Z",
+  "generatedAt": "2026-04-30T15:31:35.822Z",
   "scenario": "local-preview",
   "results": [
     {
       "label": "Home page",
       "path": "/",
-      "latencyTailMs": 8,
-      "requestsPerSec": 3100.8,
-      "throughputKbPerSec": 62456,
-      "transferredBytes": 20189
+      "latencyTailMs": 5,
+      "requestsPerSec": 4362.2,
+      "throughputKbPerSec": 88099.2,
+      "transferredBytes": 20233
     },
     {
       "label": "Benchmarks API",
       "path": "/api/benchmark",
-      "latencyTailMs": 6,
-      "requestsPerSec": 3727.8,
-      "throughputKbPerSec": 2973.4,
-      "transferredBytes": 555
+      "latencyTailMs": 4,
+      "requestsPerSec": 4361.4,
+      "throughputKbPerSec": 3483.4,
+      "transferredBytes": 556
     },
     {
       "label": "Overview API",
       "path": "/api/overview",
-      "latencyTailMs": 11,
-      "requestsPerSec": 3051.2,
-      "throughputKbPerSec": 5026.2,
+      "latencyTailMs": 3,
+      "requestsPerSec": 4970.61,
+      "throughputKbPerSec": 8186,
       "transferredBytes": 1425
     }
   ],
