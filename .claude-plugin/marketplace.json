@@ -1,0 +1,50 @@
+{
+  "$schema": "https://www.schemastore.org/schemas/json/claude-code-marketplace.json",
+  "name": "genesis-conductor-sear",
+  "owner": {
+    "name": "Igor Holt (@invariantx)",
+    "email": "iholt@mymail.aacc.edu",
+    "url": "https://github.com/igor-holt"
+  },
+  "description": "SEAR — Self Evolving Agent Retrainer by Igor Holt (@invariantx) for Genesis Conductor. Production launch surface with Next.js 16 SEO-optimized site (sitemap, robots, llms.txt), remote MCP endpoint at /api/mcp for ChatGPT developer mode, and installable `sear` CLI (doctor, overview, benchmarks, sitemap). Cloudflare Workers deployment at sear.genesisconductor.io. Provides operator-grade release inspection, benchmarking, and self-evolution loops for autonomous agents. Deeply aligned with OpenClaw persistent state, MCP bridging, and thermodynamic verification for continuous agent improvement pipelines.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/igor-holt/sear",
+  "keywords": [
+    "sear",
+    "self-evolving-agent-retrainer",
+    "genesis-conductor",
+    "igor-holt",
+    "invariantx",
+    "mcp-endpoint",
+    "chatgpt-mcp",
+    "sear-cli",
+    "cloudflare-workers",
+    "agent-retraining",
+    "benchmarks",
+    "llms-txt",
+    "seo-optimized",
+    "openclaw",
+    "clawhub",
+    "operator-inspection",
+    "claude-code-marketplace",
+    "continuous-improvement"
+  ],
+  "plugins": [
+    {
+      "name": "sear",
+      "source": "https://github.com/igor-holt/sear",
+      "description": "Self Evolving Agent Retrainer: SEO-first web surface, remote MCP for ChatGPT, and professional CLI for agent release inspection and benchmarking. Deployed at sear.genesisconductor.io with full Cloudflare integration. Core component of Genesis Conductor agent lifecycle and self-improvement infrastructure.",
+      "version": "1.0.0",
+      "tags": ["mcp", "cli", "retraining", "benchmarks", "genesis-conductor", "seo"],
+      "category": "agent-infrastructure",
+      "homepage": "https://github.com/igor-holt/sear",
+      "keywords": ["sear self evolving agent retrainer", "genesis conductor sear mcp cli", "chatgpt remote mcp endpoint", "agent benchmarking and inspection"]
+    }
+  ],
+  "links": {
+    "x": "https://x.com/invariantx",
+    "website": "https://genesisconductor.io",
+    "github": "https://github.com/igor-holt/sear",
+    "live-site": "https://sear.genesisconductor.io"
+  }
+}
