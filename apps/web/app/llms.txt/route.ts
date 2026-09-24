@@ -17,6 +17,7 @@ export async function GET(request: Request) {
     withSiteUrl("/api/overview", host),
     withSiteUrl("/api/benchmark", host),
     withSiteUrl("/api/mcp", host),
+    withSiteUrl("/openapi.json", host),
   ].join("\n");
 
   return new Response(`${body}\n`, {
